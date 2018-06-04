@@ -2,6 +2,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { AngularFireModule } from 'angularfire2';
+// Following two are not entered in declarations or imports in course
+import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireAuth } from 'angularfire2/auth';
+// Experimental: the following fixed a console error about no provider for AngularFireDatabase
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ClientsComponent } from './components/clients/clients.component';
@@ -15,11 +22,23 @@ import { RegisterComponent } from './components/register/register.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
+import { ClientService } from './services/client.service';
+
 const appRoutes: Routes = [
   { path: "", component: DashboardComponent },
   { path: "register", component: RegisterComponent },
   { path: "login", component: LoginComponent }
 ];
+
+// Initialize Firebase
+export const firebaseConfig = {
+  apiKey: "AIzaSyDPSHOGb8M3mALzSW8rSei2-xGUc11IdSA",
+  authDomain: "client-panel-e0b1e.firebaseapp.com",
+  databaseURL: "https://client-panel-e0b1e.firebaseio.com",
+  //projectId: "client-panel-e0b1e",
+  storageBucket: "client-panel-e0b1e.appspot.com",
+  messagingSenderId: "592152272483"
+}
 
 @NgModule({
   declarations: [
@@ -38,9 +57,14 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes),
+
+    // Initialize Firebase
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule
+
   ],
-  providers: [],
+  providers: [ ClientService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

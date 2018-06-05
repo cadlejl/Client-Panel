@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 import { AngularFireModule } from 'angularfire2';
 // Following two are not entered in declarations or imports in course
@@ -27,7 +28,8 @@ import { ClientService } from './services/client.service';
 const appRoutes: Routes = [
   { path: "", component: DashboardComponent },
   { path: "register", component: RegisterComponent },
-  { path: "login", component: LoginComponent }
+  { path: "login", component: LoginComponent },
+  { path: "add-client", component: AddClientComponent }
 ];
 
 // Initialize Firebase
@@ -61,8 +63,9 @@ export const firebaseConfig = {
 
     // Initialize Firebase
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireDatabaseModule
-
+    AngularFireDatabaseModule,
+    
+    FormsModule
   ],
   providers: [ ClientService ],
   bootstrap: [AppComponent]

@@ -24,4 +24,13 @@ export class ClientService {
     this.clientsObs.push(formValue);
   }
 
+  getClient(clientDetailFormId: string) {
+    this.clientObs 
+    = this.afdb
+    .object(
+      '/clients/' // '/clients/' is the database path
+      + clientDetailFormId
+    ) as FirebaseObjectObservable<Client>;
+    return this.clientObs;
+  }
 }

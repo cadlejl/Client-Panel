@@ -1,3 +1,45 @@
-<p>
-  client-details works!
-</p>
+<div class="row">
+  <div class="col-md-6">
+    <a 
+      routerLink="/" 
+      class="btn btn-link">
+      <i class="fa fa-arrow-o-left"></i>
+      &nbsp;Back To Dashboard
+    </a>
+  </div>
+  <div class="col-md-6">
+    <div class="btn-group pull-right">
+      <a 
+        [routerLink]="['/edit-client/' + id]" 
+        class="btn btn-secondary">
+        &nbsp;&nbsp;Edit&nbsp;&nbsp;<!--fix with css-->
+      </a>
+      <button 
+        type="button" 
+        class="btn btn-danger" 
+        (click)="onDeleteClick">
+        Delete
+      </button>
+    </div>
+  </div>
+</div><hr>
+<div *ngIf="client" class="card"><!-- Not sure why ngIf is necessary -->
+  <h3 class="card-header">
+    {{ client.firstName }}&nbsp;
+    {{ client.lastName }}
+  </h3>
+  <div class="card-block">
+    <div class="row">
+      <div class="col-md-8">
+        <h4>Client ID: {{ clientDetailFormId }}</h4>
+      </div>
+      <div class="col-md-4">
+        <!--Blance goes here-->
+      </div>
+    </div>
+    <ul class="list-group">
+      <li class="list-group-item">Contact email: {{ client.email }}</li>
+      <li class="list-group-item">Contact phone: {{ client.phone }}</li>
+    </ul>
+  </div>
+</div>

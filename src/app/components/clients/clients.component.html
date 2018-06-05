@@ -24,7 +24,15 @@
       <td>{{ client.firstName }} {{ client.lastName }}</td>
       <td>{{ client.email }}</td>
       <td>{{ client.balance | currency:"USD":true }}</td>
-      <td><a href="" class="btn btn-secondary btn-sm"><i class="fa fa-arrow-circle-o-right"></i>&nbsp;Details</a></td>
+      <td>
+        <a 
+          [routerLink]="('/client/' + client.$key)" 
+          href="" 
+          class="btn btn-secondary btn-sm"><!-- Course uses [] in routerLink instead of (). () seems more appropriate to me. -->
+          <i class="fa fa-arrow-circle-o-right"></i>
+          &nbsp;Details
+        </a>
+      </td>
     </tr>
   </tbody>
 </table>

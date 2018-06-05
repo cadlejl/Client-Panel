@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
+import { FlashMessagesModule } from 'angular2-flash-messages';
+
 import { AngularFireModule } from 'angularfire2';
 // Following two are not entered in declarations or imports in course
 import { AngularFireDatabase } from 'angularfire2/database';
@@ -65,7 +67,8 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     
-    FormsModule
+    FormsModule,
+    FlashMessagesModule
   ],
   providers: [ ClientService ],
   bootstrap: [AppComponent]

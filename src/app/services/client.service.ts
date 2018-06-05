@@ -7,15 +7,21 @@ import { Client } from '../models/Client';
 
 @Injectable()
 export class ClientService {
-  clients: FirebaseListObservable<any[]>;
-  client: FirebaseObjectObservable<any>;
+  clientsObs: FirebaseListObservable<any[]>;
+  clientObs: FirebaseObjectObservable<any>;
 
-  constructor(public af: AngularFireDatabase) { 
-    this.clients = this.af.list('/clients') as FirebaseListObservable<Client[]>
+  constructor(public afdb: AngularFireDatabase) { 
+    this.clientsObs 
+    = this.afdb
+    .list('/clients') as FirebaseListObservable<Client[]>
   }
 
   getClients() {
-    return this.clients;
+    return this.clientsObs;
+  }
+
+  newClient(formValue: Client) {
+    this.clientsObs.push(formValue);
   }
 
 }

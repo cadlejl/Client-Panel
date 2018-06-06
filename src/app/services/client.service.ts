@@ -37,4 +37,8 @@ export class ClientService {
   updateClient(clientDetailFormId: string, client: Client) {
     return this.clientsObs.update(clientDetailFormId, client);
   }
+
+  deleteClient(clientDetailFormId: string) {
+    return this.clientsObs.remove(clientDetailFormId);
+  }
 }

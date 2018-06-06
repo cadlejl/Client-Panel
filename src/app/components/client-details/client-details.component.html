@@ -10,14 +10,14 @@
   <div class="col-md-6">
     <div class="btn-group pull-right">
       <a 
-        [routerLink]="['/edit-client/' + id]" 
+        [routerLink]="['/edit-client/'+pathId]" 
         class="btn btn-secondary">
         &nbsp;&nbsp;Edit&nbsp;&nbsp;<!--fix with css-->
       </a>
       <button 
         type="button" 
         class="btn btn-danger" 
-        (click)="onDeleteClick">
+        (click)="onDeleteClick()">
         Delete
       </button>
     </div>
@@ -31,7 +31,7 @@
   <div class="card-block">
     <div class="row">
       <div class="col-md-7">
-        <h4>Client ID: {{ clientDetailFormId }}</h4>
+        <h4>Client ID: {{ pathId }}</h4>
       </div>
       <div class="col-md-5 balance-update">
         <h3 class="pull-right">

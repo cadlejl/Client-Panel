@@ -41,7 +41,7 @@ export class AddClientComponent implements OnInit {
         {cssClass:'alert-danger', timeout:4000}
       );
 
-      this.router.navigate(['add-client']);
+      //this.router.navigate(['add-client']); I don't get what this is for.
 
     } else {
       // Add new client

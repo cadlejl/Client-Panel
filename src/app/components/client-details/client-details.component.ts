@@ -10,7 +10,7 @@ import { Client } from '../../models/Client';
   styleUrls: ['./client-details.component.css']
 })
 export class ClientDetailsComponent implements OnInit {
-  private clientDetailFormId: string;
+  private pathId: string;
   private client: Client;
   private hasBalance: boolean = false;
   private showBalanceUpdateInput: boolean = false;
@@ -19,14 +19,14 @@ export class ClientDetailsComponent implements OnInit {
     public clientService: ClientService,
     public router: Router,
     public route: ActivatedRoute,// From router
-    public flashMessagesService: FlashMessagesService,
+    public flashMessagesService: FlashMessagesService
   ) { }
 
   ngOnInit() {
     // "Get ID from path/URL"
-    this.clientDetailFormId = this.route.snapshot.params['id'];
+    this.pathId = this.route.snapshot.params['id'];
     // Get client
-    this.clientService.getClient(this.clientDetailFormId).subscribe(serviceClient => {
+    this.clientService.getClient(this.pathId).subscribe(serviceClient => {
       this.hasBallance(serviceClient);
       this.client = serviceClient;
     })
@@ -45,12 +45,23 @@ export class ClientDetailsComponent implements OnInit {
   ) {
     // Update client
     this.clientService
-    .updateClient(this.clientDetailFormId, this.client);
+    .updateClient(this.pathId, this.client);
     this.flashMessagesService.show(
       'Balance Updated', 
       { cssClass: 'alert-success', timeout: 4000 }
     );
     this.hasBallance(this.client);
-    this.router.navigate(['/client/' + this.clientDetailFormId]);
+    this.router.navigate(['/client/' + this.pathId]);
+  }
+
+  onDeleteClick() {
+    if(confirm("Are you sure you want to delete this client?")) {
+      this.clientService.deleteClient(this.pathId);
+      this.flashMessagesService.show(
+        'Client Deleted', 
+        { cssClass: 'alert-success', timeout: 4000 }
+      );
+      this.router.navigate(['/']);
+    }
   }
 }

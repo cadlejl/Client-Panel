@@ -26,14 +26,36 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 
 import { ClientService } from './services/client.service';
 import { AuthService } from "./services/auth.service";
+import { AuthGuardService } from "./guards/auth.guard";
 
 const appRoutes: Routes = [
-  { path: "", component: DashboardComponent },
-  { path: "register", component: RegisterComponent },
-  { path: "login", component: LoginComponent },
-  { path: "add-client", component: AddClientComponent },
-  { path: "client/:id", component: ClientDetailsComponent },
-  { path: "edit-client/:id", component: EditClientComponent }
+  { 
+    path: "", component: DashboardComponent, 
+    canActivate: [AuthGuardService] 
+  },
+  { 
+    path: "register", 
+    component: RegisterComponent 
+  },
+  { 
+    path: "login", 
+    component: LoginComponent 
+  },
+  { 
+    path: "add-client", 
+    component: AddClientComponent, 
+    canActivate: [AuthGuardService] 
+  },
+  { 
+    path: "client/:id", 
+    component: ClientDetailsComponent, 
+    canActivate: [AuthGuardService] 
+  },
+  { 
+    path: "edit-client/:id", 
+    component: EditClientComponent, 
+    canActivate: [AuthGuardService] 
+  }
 ];
 
 // Initialize Firebase
@@ -76,7 +98,8 @@ export const firebaseConfig = {
     AngularFireAuth,
     AngularFireDatabase,
     ClientService,
-    AuthService
+    AuthService,
+    AuthGuardService
    ],
   bootstrap: [AppComponent]
 })

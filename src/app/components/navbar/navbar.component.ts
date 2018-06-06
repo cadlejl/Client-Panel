@@ -39,6 +39,6 @@ export class NavbarComponent implements OnInit {
       { cssClass: 'alert-success', timeout: 4000 }
     );
     
-    this.router.navigate(['/login']);
+    this.router.navigate(['/login']); // With guard I think this will become unnecessary. It doesn't seem to work anyway.
   }
 }

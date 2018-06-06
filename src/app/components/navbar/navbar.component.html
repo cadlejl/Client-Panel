@@ -7,7 +7,7 @@
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item"><!--active class removed-->
+        <li *ngIf="isLoggedIn" class="nav-item"><!--active class removed-->
           <a class="nav-link" href="#" routerLink="/">Dashboard <!--span class="sr-only">(current)</span--></a>
         </li>
         <!--li class="nav-item">
@@ -26,11 +26,14 @@
         </li-->
       </ul>
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item"><!--active class removed-->
+        <li *ngIf="!isLoggedIn" class="nav-item"><!--active class removed-->
           <a class="nav-link" href="#" routerLink="/register">Register <!--span class="sr-only">(current)</span--></a>
         </li>
-        <li class="nav-item"><!--active class removed-->
+        <li *ngIf="!isLoggedIn" class="nav-item"><!--active class removed-->
           <a class="nav-link" href="#" routerLink="/login">Login <!--span class="sr-only">(current)</span--></a>
+        </li>
+        <li *ngIf="isLoggedIn" class="nav-item"><!--active class removed-->
+          <a class="nav-link" href="#" (click)="onLogoutClick()">Logout<!--span class="sr-only">(current)</span--></a>
         </li>
       </ul>
       <!--form class="form-inline my-2 my-lg-0">

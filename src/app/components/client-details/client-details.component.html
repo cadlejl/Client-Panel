@@ -30,13 +30,60 @@
   </h3>
   <div class="card-block">
     <div class="row">
-      <div class="col-md-8">
+      <div class="col-md-7">
         <h4>Client ID: {{ clientDetailFormId }}</h4>
       </div>
-      <div class="col-md-4">
-        <!--Blance goes here-->
+      <div class="col-md-5 balance-update">
+        <h3 class="pull-right">
+          Balance:&nbsp;
+          <span
+            [class.text-danger]="hasBalance || (client.balance > 0) || (balance === null)"
+            [class.text-success]="!hasBalance">
+            {{ client.balance | currency:"USD":true }}
+          </span>
+          <small>
+            <a 
+              (click)
+              ="showBalanceUpdateInput 
+              = !showBalanceUpdateInput">
+              <i class="fa fa-pencil"></i>
+            </a>
+          </small>
+        </h3>
+        <div class="clearfix">
+          <form 
+            *ngIf="showBalanceUpdateInput" 
+            (submit)
+            ="showBalanceUpdateInput 
+            = !showBalanceUpdateInput; 
+            updateBalance(idNotUsed)" 
+            class="form-inline pull-right">
+            <div class="form-group"><!--Instructor never uses his id parameter-->
+              <input 
+                type="text" 
+                [(ngModel)]="client.balance"
+                name="balance" 
+                class="form-control">
+                <div class="btn-group">
+                  <button 
+                    type="submit" 
+                    class="btn btn-primary">
+                    Update
+                  </button>
+                  <!-- <button // Thinking I need a cancel button
+                    type="button" 
+                    class="btn btn-secondary"
+                    (click)
+                    ="showBalanceUpdateInput 
+                    = !showBalanceUpdateInput">
+                    Cancel
+                  </button> -->
+                </div>
+            </div>
+          </form>
+        </div>
       </div>
-    </div>
+    </div><br>
     <ul class="list-group">
       <li class="list-group-item">Contact email: {{ client.email }}</li>
       <li class="list-group-item">Contact phone: {{ client.phone }}</li>

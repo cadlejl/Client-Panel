@@ -33,4 +33,8 @@ export class ClientService {
     ) as FirebaseObjectObservable<Client>;
     return this.clientObs;
   }
+
+  updateClient(clientDetailFormId: string, client: Client) {
+    return this.clientsObs.update(clientDetailFormId, client);
+  }
 }

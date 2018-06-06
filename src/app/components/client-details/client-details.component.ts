@@ -23,16 +23,34 @@ export class ClientDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // "Get ID from URL"
+    // "Get ID from path/URL"
     this.clientDetailFormId = this.route.snapshot.params['id'];
     // Get client
     this.clientService.getClient(this.clientDetailFormId).subscribe(serviceClient => {
-      if(serviceClient.balance > 0) {
-        this.hasBalance = true;
-      }
+      this.hasBallance(serviceClient);
       this.client = serviceClient;
-      console.log(this.client);
     })
   }
 
+  hasBallance(client: Client) {
+    if(client.balance > 0) {
+      this.hasBalance = true;
+    } else {
+      this.hasBalance = false;
+    }
+  }
+
+  updateBalance(
+    /*clientDetailFormId: string*/ // Instructor never used his parameter
+  ) {
+    // Update client
+    this.clientService
+    .updateClient(this.clientDetailFormId, this.client);
+    this.flashMessagesService.show(
+      'Balance Updated', 
+      { cssClass: 'alert-success', timeout: 4000 }
+    );
+    this.hasBallance(this.client);
+    this.router.navigate(['/client/' + this.clientDetailFormId]);
+  }
 }

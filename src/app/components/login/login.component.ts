@@ -15,21 +15,21 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-    private _flashMessagesService: FlashMessagesService
+    private flashMessagesService: FlashMessagesService
   ) { }
   ngOnInit() {}
 
   onSubmit() {
     this.authService.login(this.email, this.password)
       .then((response) => {
-        this._flashMessagesService.show(
+        this.flashMessagesService.show(
           'You are logged in', 
           { cssClass: 'alert-success', timeout: 4000 }
         );
         this.router.navigate(['/']);
       })
       .catch((error) => {
-        this._flashMessagesService.show(
+        this.flashMessagesService.show(
           error.message, 
           { cssClass: 'alert-danger', timeout: 4000 }
         );

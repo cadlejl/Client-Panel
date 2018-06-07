@@ -58,7 +58,13 @@ const appRoutes: Routes = [
     path: "edit-client/:id", 
     component: EditClientComponent, 
     canActivate: [AuthGuardService] 
-  }
+  },
+  { 
+    path: "settings", 
+    component: SettingsComponent, 
+    canActivate: [AuthGuardService] 
+  },
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 // Initialize Firebase

@@ -43,7 +43,7 @@ export class EditClientComponent implements OnInit {
     })
 
     this.disableBalanceOnEdit 
-      = this.settingsService.getSettings().disableBalenceOnEdit;
+      = this.settingsService.getSettings().disableBalanceOnEdit;
   }
 
   onSubmit({value, valid}:{value: Client, valid: boolean}) {

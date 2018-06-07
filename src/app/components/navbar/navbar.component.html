@@ -70,6 +70,16 @@
           class="nav-item"><!--active class removed-->
           <a 
             class="nav-link" 
+            href="#"
+            routerLink="/settings">
+            Settings<!--span class="sr-only">(current)</span-->
+          </a>
+        </li>
+        <li 
+          *ngIf="isLoggedIn" 
+          class="nav-item"><!--active class removed-->
+          <a 
+            class="nav-link" 
             href="#" 
             (click)="onLogoutClick()">
             Logout<!--span class="sr-only">(current)</span-->

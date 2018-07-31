@@ -11,9 +11,7 @@ export class ClientService {
   clientObs: FirebaseObjectObservable<any>;
 
   constructor(public afdb: AngularFireDatabase) { 
-    this.clientsObs 
-    = this.afdb
-    .list('/clients') as FirebaseListObservable<Client[]>
+    this.clientsObs = this.afdb.list('/clients') as FirebaseListObservable<Client[]>
   }
 
   getClients() {
@@ -25,9 +23,7 @@ export class ClientService {
   }
 
   getClient(clientDetailFormId: string) {
-    this.clientObs 
-    = this.afdb
-    .object(
+    this.clientObs = this.afdb.object(
       '/clients/' // '/clients/' is the database path
       + clientDetailFormId
     ) as FirebaseObjectObservable<Client>;
